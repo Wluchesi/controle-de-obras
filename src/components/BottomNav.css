@@ -36,3 +36,10 @@
     color: var(--primary);
     filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.4));
 }
+
+@media (max-width: 768px) {
+    /* Hide Contas, Equipe, Relatórios, Ajustes in bottom nav on mobile */
+    .bottom-nav .nav-item:nth-child(n+5) {
+        display: none !important;
+    }
+}

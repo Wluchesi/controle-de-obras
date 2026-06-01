@@ -12,10 +12,13 @@ import { ContasAPagar } from './components/ContasAPagar'
 import { Configuracoes } from './components/Configuracoes'
 import { Compras } from './components/Compras'
 import { BottomNav } from './components/BottomNav'
+import { TopBar } from './components/TopBar'
+import { SidebarMenu } from './components/SidebarMenu'
 
 const AppContent = () => {
   const { user } = useAuth()
   const [activeTab, setActiveTab] = useState('dashboard')
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   if (!user) {
     return <Login />
@@ -46,6 +49,13 @@ const AppContent = () => {
 
   return (
     <div className="app-shell">
+      <TopBar onMenuToggle={() => setIsMenuOpen(true)} />
+      <SidebarMenu
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+      />
       <main className="app-main">
         <AnimatePresence mode="wait">
           <motion.div
