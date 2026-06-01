@@ -174,12 +174,7 @@ select option {
 /* Print Utilities */
 @media screen {
   .print-only {
-    position: absolute !important;
-    left: -9999px !important;
-    top: -9999px !important;
-    visibility: hidden !important;
-    height: 0 !important;
-    overflow: hidden !important;
+    display: none !important;
   }
 }
 

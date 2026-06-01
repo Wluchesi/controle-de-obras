@@ -207,20 +207,7 @@
 }
 
 .reports-content {
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 12px;
-    border: none;
-    background: transparent;
-    color: var(--text-muted);
-    font-size: 0.875rem;
-    font-weight: 700;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    padding-top: var(--spacing-md);
 }
 
 .report-tabs button.active {

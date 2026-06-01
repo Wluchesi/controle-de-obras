@@ -5,6 +5,9 @@
     right: 0;
     height: 70px;
     z-index: 1000;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    will-change: transform;
 }
 
 .bottom-nav {
