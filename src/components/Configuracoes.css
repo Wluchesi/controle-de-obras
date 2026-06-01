@@ -1,0 +1,90 @@
+.config-container {
+    padding: var(--spacing-md);
+    padding-bottom: 90px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+    color: var(--text-main);
+}
+
+.section-header .icon {
+    color: var(--accent);
+}
+
+.section-header h2 {
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.section-desc {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    margin-bottom: var(--spacing-lg);
+}
+
+.info-box {
+    margin-top: var(--spacing-lg);
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    display: flex;
+    gap: var(--spacing-md);
+    color: var(--text-main);
+}
+
+.info-box h4 {
+    font-size: 0.875rem;
+    margin-bottom: 4px;
+    color: var(--accent);
+}
+
+.info-box p {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+/* New Styles for Better UX */
+.success-toast {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #22c55e;
+    color: white;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+    font-weight: 600;
+}
+
+.readonly-view {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.data-item {
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--border);
+}
+
+.data-item label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.data-item p {
+    font-size: 1rem;
+    color: var(--text-main);
+    font-weight: 500;
+}

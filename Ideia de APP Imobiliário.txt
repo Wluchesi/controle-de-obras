@@ -1,0 +1,115 @@
+Ideia de APP Imobiliário
+
+Plataforma de software voltada para a gestão automatizada de aluguéis. O objetivo central da ferramenta é substituir processos manuais e planilhas por um sistema que gerencia o ciclo completo da locação, visando reduzir a inadimplência e economizar tempo do proprietário ou administrador.
+
+Diferente de grandes CRMs imobiliários focados apenas em vendas, a Pilota Imóveis foca na gestão financeira e administrativa pós-fechamento do contrato.
+O sistema atua como um "copiloto" para proprietários (que gerenciam de 1 a 1.000 imóveis).
+Ele centraliza desde a análise de crédito do futuro inquilino até o repasse do valor do aluguel para o dono do imóvel.
+
+Principais Funcionalidades
+As funcionalidades estão divididas em quatro pilares principais:
+
+1. Automação Financeira
+Emissão de Boletos: Geração automática mensal via integração com bancos ou gateways (como Inter e Asaas).
+
+Régua de Cobrança: Envio automático de notificações e lembretes de pagamento via WhatsApp e E-mail.
+
+Baixa Automática: O sistema identifica o pagamento e atualiza o status financeiro sem intervenção manual.
+
+Cálculo de Reajuste: Aplicação automática de índices como IGPM, IPCA ou INPC nas datas de aniversário do contrato.
+
+Repasse Automatizado: Realização de repasses via Pix ou transferência bancária para o proprietário após o recebimento.
+
+2. Segurança e Jurídico
+Análise de Crédito (Consulta Serasa): Ferramenta integrada para verificar score, dívidas, protestos e processos judiciais de candidatos a inquilino.
+
+Assinatura Eletrônica: Assinatura de contratos com validade jurídica diretamente pela plataforma.
+
+Gestão de Contratos: Modelos prontos e armazenamento digital de toda a documentação.
+
+3. Experiência do Inquilino
+Portal do Inquilino: Um painel self-service onde o locatário pode retirar 2ª via de boletos, visualizar recibos e baixar documentos sem precisar solicitar ao administrador.
+
+4. Gestão e Relatórios
+Dashboard em Tempo Real: Visão geral da saúde financeira da carteira de imóveis (taxa de ocupação, inadimplência, etc.).
+
+Relatórios para Imposto de Renda: Exportação de demonstrativos organizados para facilitar a declaração anual de rendimentos.
+
+Gestão de Comissões: Cálculo automático de valores devidos a corretores ou administradores.
+
+Dados da criação do supabase:
+contatofuturasolucao+kitnet@gmail.com
+Futurasolucao+kitnet1@gmail.com
+
+Nome do projeto: Controle de Alugueis
+ID do projeto: nijpxmvbrckjzfoyzasw
+
+
+
+
+PLANOS
+
+Pilota 3
+Para quem está começando
+
+R$56/mês
+Até 3 imóveis
+Boletos automáticos
+Cobrança WhatsApp
+5GB armazenamento
+-----
+Pilota 10
+Melhor custo-benefício
+
+R$99/mês
+Até 10 imóveis
+Tudo do Pilota 3
+Suporte prioritário
+Relatórios avançados
+-----
+Pilota 30
+Para investidores
+
+R$149/mês
+Até 30 imóveis
+Tudo do Pilota 10
+3 usuários
+15GB armazenamento
+
+
+Gerencie Seus Imóveis em 15 Minutos por Mês
+
+Boletos, cobranças, reajustes e relatórios no automático. Para proprietários de 1 a 1.000 imóveis.
+
+Seus Imóveis Deveriam Te Dar Renda, Não Trabalho
+Enquanto você faz gestão manual, está perdendo dinheiro e tempo que nunca mais voltam.
+
+Esqueceu de reajustar o aluguel?
+São R$1.800/ano que você perde por imóvel sem reajuste automático.
+
+Domingo à noite pedindo boleto?
+Inquilino só lembra do aluguel quando você está descansando ou em família.
+
+Atraso sem multa nem juros?
+Você perde até R$180 por atraso que a lei permite cobrar.
+
+Horas cobrando pelo WhatsApp?
+Tempo que você gasta como cobrador poderia virar lazer ou novos negócios.
+
+Sistema que Trabalha por Você
+Tudo automatizado. Você só acompanha os resultados.
+
+
+
+Transformando a gestão de imóveis com tecnologia de ponta e simplicidade incomparável. Seu sucesso é nosso combustível.
+(11) 93619-5727
+negocios@pilotaimoveis.com.br
+São Paulo, SP - Brasil
+
+Termos de Uso
+Política de Privacidade
+LGPD
+Cookies
+
+© 2025 Pilota Imóveis. Todos os direitos reservados.
+Feito com ❤️ para revolucionar o mercado imobiliário

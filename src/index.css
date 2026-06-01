@@ -1,0 +1,350 @@
+:root {
+  /* Colors */
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --bg-main: #000000;
+  --bg-card: #0a0e1b;
+  --text-main: #f8fafc;
+  --text-muted: #64748b;
+  --accent: #38bdf8;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --border: #1e293b;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* Base Utility Classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Theme Overrides for Pure Black Background */
+.filters-bar,
+.report-tabs,
+.login-card,
+.despesa-item,
+.summary-card,
+.chart-card,
+.table-row,
+.insight-item-box {
+  background: var(--bg-card) !important;
+  border-color: var(--border) !important;
+}
+
+.modal-overlay {
+  background: rgba(0, 0, 0, 0.85) !important;
+}
+
+select option {
+  background-color: #000000 !important;
+  color: white !important;
+}
+
+.action-btn-minimal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 8px;
+  color: var(--text-muted);
+  transition: all 0.2s;
+  border: none;
+  background: none;
+}
+
+.action-btn-minimal:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+}
+
+.action-btn-minimal.delete:hover {
+  color: var(--error);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.animate-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Page Headers */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.page-header h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.page-header p {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+/* Print Utilities */
+@media screen {
+  .print-only {
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+}
+
+@media print {
+  :root {
+    --bg-main: #ffffff !important;
+    --bg-card: #ffffff !important;
+    --text-main: #000000 !important;
+    --text-muted: #666666 !important;
+    --border: #dddddd !important;
+  }
+
+  /* Reset layout constraints for print */
+  html,
+  body,
+  #root,
+  .app-shell,
+  .app-main {
+    background: white !important;
+    background-color: white !important;
+    color: black !important;
+    display: block !important;
+    /* Force block to avoid flexbox print issues */
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    position: static !important;
+  }
+
+  .print-hide {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Ensure all contents within print-only are visible */
+  .print-only * {
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: black !important;
+  }
+}
+
+/* Recharts fix for print */
+.recharts-responsive-container {
+  width: 600px !important;
+  height: 300px !important;
+}
+
+* {
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+
+/* Global Badge System - Premium Flags */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 14px;
+  /* Aumentado conforme solicitado */
+  border-radius: 8px;
+  font-size: 0.75rem;
+  /* Mais legível */
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid transparent;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.badge svg {
+  opacity: 0.9;
+}
+
+/* Variants */
+.badge.pendente,
+.badge.warning {
+  background: rgba(245, 158, 11, 0.12);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.2);
+}
+
+.badge.sucesso,
+.badge.pago,
+.badge.comprado,
+.badge.concluido {
+  background: rgba(34, 197, 94, 0.12);
+  color: #4ade80;
+  border-color: rgba(34, 197, 94, 0.2);
+}
+
+.badge.erro,
+.badge.atrasado,
+.badge.urgente {
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.badge.info,
+.badge.em_andamento,
+.badge.labor {
+  background: rgba(56, 189, 248, 0.12);
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.2);
+}
+
+.badge.neutral,
+.badge.secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+
+.badge:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+
+/* Icons refinement (Edit/Delete) */
+.action-btn-minimal svg,
+.action-btn svg,
+button[title="Editar"] svg,
+button[title="Excluir"] svg,
+button[title="Editar Item"] svg,
+button[title="Excluir Item"] svg {
+  width: 18px !important;
+  height: 18px !important;
+  transition: transform 0.2s;
+}
+
+.action-btn-minimal:hover svg,
+.action-btn:hover svg,
+button[title="Editar"]:hover svg,
+button[title="Excluir"]:hover svg {
+  transform: scale(1.1);
+}
+
+/* Specific colors for icons as requested */
+.action-btn-minimal .lucide-pencil,
+.action-btn .lucide-pencil,
+.action-btn-minimal .lucide-edit-2,
+.action-btn .lucide-edit-2,
+.action-btn-minimal .lucide-edit2,
+.action-btn .lucide-edit2,
+button[title="Editar"] svg,
+button[title="Editar Item"] svg {
+  color: #fbbf24 !important;
+  /* Amarelo PENDENTE */
+}
+
+.action-btn-minimal .lucide-trash-2,
+.action-btn .lucide-trash-2,
+.action-btn-minimal .lucide-trash2,
+.action-btn .lucide-trash2,
+button[title="Excluir"] svg,
+button[title="Excluir Item"] svg {
+  color: #ef4444 !important;
+  /* Vermelho Erro */
+}
+
+/* Button "Pagar" Enhancement */
+.btn-pay,
+button[title="Registrar Pagamento"] {
+  padding: 10px 24px !important;
+  /* Azul um pouco maior do que o texto */
+  font-size: 0.85rem !important;
+  font-weight: 800 !important;
+}

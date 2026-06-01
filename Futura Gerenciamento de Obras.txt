@@ -1,0 +1,58 @@
+Futura Gerenciamento de Obras
+
+Supabase:
+
+contatofuturasolucao+obras@gmail.com
+C@n@l4141C@n@l4242C@n@l4343
+
+Project URL: https://kkfadilbtnjercterhia.supabase.co
+https://ynhusqgzzibgqxgrpwws.supabase.co
+Projeto ID
+kkfadilbtnjercterhia
+
+sb_publishable_ynxn2g6jdNVxi5u0VfJHYQ_QAHN3DCl
+
+Usuário de teste: teste@gmail.com
+Senha: 123456
+
+Usuário de teste: admin@futura.com
+Senha: admin123
+
+Não altere mais o desiger a menos que eu te peça.
+
+ok-No campo 'Distribuição por Categoria' - exiba os valores no gráfico
+ok-No painel de controle não está contabilizando as obras, Orçamento Total, Total Gasto nem quantos Trabalhadores.
+ok-Criar Relatório de gastos por trabalhador
+ok-Quero ver os gastos por trabalhadores, o quanto cada um gastou
+ok-Ter opção de entrada de $ para fazer do fluxo de caixa da obra
+ok-Em 'Financeiro', o filtro por obra não está funcional.
+ok-Em 'Registrar Entrada' o botão 'Confirmar entrada' não está funcionando
+ok-No botão 'Lançar' coloque 'Lançar Despesa' para ficar mais claro
+ok-Ter uma representação em porcentagem de custos por categorias, exemplo: 20% representa materiais, 20% mão de obra e assim por diante.
+ok-Criar uma forma de Recibo, sempre que eu pagar algum profissional com opção de enviar direto pelo WhatsApp para o profissional
+ok-Precisamos criar uma opção para cadastro e edição de dados do proprietário da obra para que apareça nos recibos. Pode ser em configurações.
+ok-Não quero que abra imediatamente o recibo, Preciso que seja gerado um PDF com os dados do proprietário (dono da obra) e dados do profissional com a sua profissão, o valor a data e referente a que é o pagamento (honorários, reembolso, etc), mas mantenha a opção de enviar esse recibo por WhatsApp posteriormente.  
+ok-Exemplo do problema:
+Quando crio um pagamento pelo 'Mão de Obra' para um profissional de 500 ele gera 500 para Mão de obra e 500 Materiais/Outros com Custo Total de R$ 1.000 e não está correto. Ele deveria ser total 500 que foi o que eu lancei.
+Ao invés de 'Mão de Obra' deveria ser 'DESPESA' e não precisaria ter 'Materiais/Outros'
+ok-Mudar o nome de 'Equipe' para 'Fornecedores'
+ok-Dentro de fornecedores criar subcategorias de:
+	Prestadores de Serviço
+	Materiais
+	Locação de Equipe
+ok-Ainda em 'Fornecedores' sinalizar como opção CPF ou CNPJ se for cpf pedir 'Nome Completo' e o CPF, se for CNPJ, pedir nome empresa e CNPJ. Usar o CPF ou CNPJ para não ter duplicidade e se já tiver cadastrado, exibir e não deixar cadastrar outro.
+ok-Criar um filtro em 'Fornecedores' por 'Obra' e uma opção de 'Editar' e 'Excluir' o profissional, se tiver um fornecedor com lançamento pago, não permitir exclusão.
+ok-Em 'Financeiro' Mudar o nome de: 'Lançar Despesa' para: 'Despesas'
+Acrescentar a opção de editar e excluir nos lançamentos tanto em 'Entrada' quanto em 'Despesas'
+ok-Crie fluxo de contas a pagar
+ok-Quando criar um lançamento de conta a pagar ter opção de flag para previsão.
+ok-Após eu ter aprovado uma cotação, não gerou o financeiro
+ok-Em 'Relatórios' crie um filtro para escolher de qual obra eu quero um relatório
+ok-Em 'Financeiro' - inclusão de despesas 'categoria' - substituir 'DESPESAS' por 'Prestação de Serviço'
+ok-Em 'Financeiro' - quero que a data que aparece no lançamento seja a data de vencimento do lançamento 
+ok-Em 'Contas a Pagar' e no 'Financeiro' criar um novo filtro onde eu coloco o período que desejo consultar
+
+
+
+
+Não altere mais o designer nem os tipos de gráficos, estilo nada além do que eu te pedir abaixo...

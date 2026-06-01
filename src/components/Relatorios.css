@@ -1,0 +1,556 @@
+﻿.relatorios-container {
+    padding: var(--spacing-md);
+    padding-bottom: 90px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.header-content h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.header-content p {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+/* Tabs */
+.report-tabs {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.03);
+    padding: 4px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.report-tabs button {
+    background: transparent;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.report-tabs button:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+}
+
+/* Selector de Modo */
+.report-mode-selector {
+    display: flex;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 3px;
+    gap: 2px;
+}
+
+.mode-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.mode-btn:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.mode-btn.active {
+    background: var(--accent);
+    color: white;
+}
+
+/* Tabelas Analíticas */
+.analytic-tables-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    animation: fadeIn 0.3s ease;
+}
+
+.analytic-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.table-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.data-table-wrapper {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    color: var(--text-main);
+}
+
+.data-table th {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--border);
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+}
+
+.data-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.data-table tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.data-table .row-zebra {
+    background: rgba(255, 255, 255, 0.01);
+}
+
+.col-date {
+    width: 100px;
+}
+
+.col-value {
+    text-align: right;
+    font-weight: 600;
+}
+
+.col-status {
+    width: 120px;
+    text-align: center;
+}
+
+@media print {
+    .relatorios-container {
+        background: white !important;
+        color: black !important;
+        padding: 0 !important;
+    }
+
+    .print-hide {
+        display: none !important;
+    }
+
+    .relatorios-printable-area {
+        display: block !important;
+        width: 100% !important;
+    }
+
+    .analytic-section {
+        border: 1px solid #eee !important;
+        background: white !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+    }
+
+    .data-table th {
+        border-bottom: 2px solid #333 !important;
+        color: black !important;
+    }
+
+    .data-table td {
+        border-bottom: 1px solid #eee !important;
+        color: black !important;
+    }
+
+    .data-table .row-zebra {
+        background: #f9f9f9 !important;
+    }
+
+    .status-badge {
+        border: 1px solid #ccc !important;
+        color: black !important;
+        background: transparent !important;
+    }
+}
+
+.reports-content {
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.report-tabs button.active {
+    background: var(--bg-card);
+    color: var(--accent);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border);
+}
+
+/* Summary Grid - Mockup Style */
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.summary-card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.summary-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+}
+
+.summary-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.summary-value.success {
+    color: var(--success);
+}
+
+.summary-value.error {
+    color: var(--error);
+}
+
+.summary-footer {
+    margin-top: 8px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Charts Grid */
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+}
+
+.chart-card {
+    padding: 24px;
+}
+
+.chart-card h3 {
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 20px;
+    color: var(--text-main);
+}
+
+.insights-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.insight-item-box {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+/* Tables */
+.simple-table {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.table-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+/* Budget Dash */
+.budget-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.budget-stat-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+/* Health Dashboard */
+.health-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.health-summary-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.health-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.health-card .label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.health-card .value-area {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.health-card .value {
+    font-size: 1.25rem;
+    font-weight: 800;
+}
+
+.health-card .count {
+    font-size: 0.75rem;
+    font-weight: 800;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+}
+
+/* Specific card accents */
+.health-card.vencido .value {
+    color: #f87171;
+}
+
+.health-card.a-vencer .value {
+    color: #fbbf24;
+}
+
+.health-card.recebido .value {
+    color: #22c55e;
+}
+
+.health-card.total .value {
+    color: #3b82f6;
+}
+
+.health-card.vencido::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #f87171;
+}
+
+.health-card.a-vencer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #fbbf24;
+}
+
+.health-card.recebido::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #22c55e;
+}
+
+.health-card.total::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #3b82f6;
+}
+
+.chart-card-full {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.chart-legend-custom {
+    display: flex;
+    gap: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+}
+
+.dot.vencido {
+    background: #f87171;
+}
+
+.dot.a-vencer {
+    background: #fcd34d;
+}
+
+.dot.pago {
+    background: #22c55e;
+}
+
+@media (max-width: 1024px) {
+    .health-summary-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Print Specifics for Reports */
+@media print {
+    .relatorios-container {
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: none !important;
+        display: block !important;
+        background: white !important;
+    }
+
+    .summary-card,
+    .chart-card,
+    .table-row,
+    .insight-item-box {
+        background: white !important;
+        border: 1px solid #eee !important;
+        color: black !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+        display: block !important;
+        margin-bottom: 25px !important;
+        padding: 20px !important;
+    }
+
+    .summary-label,
+    .summary-footer,
+    .header-content p {
+        color: #666 !important;
+    }
+
+    .summary-value {
+        color: black !important;
+    }
+
+    .charts-grid-full {
+        display: block !important;
+    }
+
+    h3 {
+        color: black !important;
+        margin-bottom: 15px !important;
+    }
+}
