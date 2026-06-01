@@ -359,3 +359,20 @@ button[title="Registrar Pagamento"] {
   font-size: 0.85rem !important;
   font-weight: 800 !important;
 }
+
+/* Mobile App Shell Layout Scroll Lock */
+@media (max-width: 768px) {
+  .app-shell {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  .app-main {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
