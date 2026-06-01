@@ -1,4 +1,4 @@
-﻿.relatorios-container {
+.relatorios-container {
     padding: var(--spacing-md);
     padding-bottom: 90px;
     max-width: 1200px;
@@ -463,6 +463,13 @@
     padding: 24px;
 }
 
+.chart-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
 .chart-legend-custom {
     display: flex;
     gap: 20px;
@@ -502,6 +509,41 @@
 }
 
 @media (max-width: 768px) {
+    .report-tabs {
+        flex-wrap: wrap;
+        gap: 6px;
+        background: transparent;
+        border: none;
+        padding: 0;
+    }
+
+    .report-tabs button {
+        flex: 1 1 auto;
+        justify-content: center;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+    }
+
+    .report-tabs button.active {
+        background: var(--bg-card);
+        color: var(--accent);
+        border-color: var(--accent);
+    }
+
+    .chart-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .chart-legend-custom {
+        flex-wrap: wrap;
+        gap: 10px 16px;
+    }
+
     .summary-grid {
         grid-template-columns: 1fr;
     }

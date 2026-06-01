@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as XLSX from 'xlsx'
 import { createPortal } from 'react-dom'
 import { supabase } from '../lib/supabase'
@@ -450,7 +450,7 @@ export const Relatorios = () => {
                                 </div>
 
                                 <Card className="chart-card-full">
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+                                    <div className="chart-header-row">
                                         <h3>Status de Pagamentos Mensais</h3>
                                         <div className="chart-legend-custom">
                                             <span className="legend-item"><span className="dot vencido"></span> Vencido</span>
