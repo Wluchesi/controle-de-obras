@@ -276,13 +276,19 @@
     opacity: 0.7;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .categories-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
     .quick-add-form {
         flex-direction: column;
+        gap: 10px;
+    }
+
+    .quick-add-form .quick-add-input {
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
     .compra-item {
@@ -293,5 +299,13 @@
     .compra-actions {
         align-items: flex-start;
         width: 100%;
+        border-top: 1px dashed var(--border);
+        padding-top: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .categories-grid {
+        grid-template-columns: 1fr;
     }
 }

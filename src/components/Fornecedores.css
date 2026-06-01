@@ -1,4 +1,4 @@
-﻿.fornecedores-container {
+.fornecedores-container {
     padding: var(--spacing-md);
     padding-bottom: 90px;
     max-width: 800px;
@@ -19,8 +19,9 @@
 
 .fornecedor-card {
     display: flex;
+    flex-direction: column;
     gap: var(--spacing-md);
-    align-items: center;
+    align-items: stretch;
 }
 
 .fornecedor-avatar {
@@ -81,12 +82,15 @@
 .fornecedor-actions {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-top: 1px dashed var(--border);
+    padding-top: 12px;
 }
 
 .fornecedor-content {
     display: flex;
     gap: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
 }
 
 .fornecedor-stats {
