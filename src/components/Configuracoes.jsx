@@ -1,12 +1,14 @@
-﻿import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabase'
 import { Card } from './ui/Card'
 import { Button } from './ui/Button'
 import { Input } from './ui/Input'
-import { Save, User, FileText, Phone, Edit2, CheckCircle } from 'lucide-react'
+import { Save, User, FileText, Phone, Edit2, CheckCircle, LogOut } from 'lucide-react'
+import { useAuth } from '../contexts/AuthContext'
 import './Configuracoes.css'
 
 export const Configuracoes = ({ onTabChange }) => {
+    const { signOut } = useAuth()
     const [loading, setLoading] = useState(true)
     const [saving, setSaving] = useState(false)
     const [isEditing, setIsEditing] = useState(false)
@@ -162,6 +164,20 @@ export const Configuracoes = ({ onTabChange }) => {
                     <p>Após registrar o pagamento de um fornecedor na aba "Fornecedores", você pode gerar um recibo profissional em PDF com a sua marca.</p>
                 </div>
             </div>
+
+            <Card className="form-card animate-in" style={{ marginTop: '1.5rem', borderColor: 'rgba(239, 68, 68, 0.2)' }}>
+                <div className="section-header" style={{ color: 'var(--error)' }}>
+                    <LogOut size={20} className="icon" />
+                    <h2>Sair do Sistema</h2>
+                </div>
+                <p className="section-desc">Desconectar sua conta com segurança deste dispositivo.</p>
+                <Button 
+                    onClick={signOut} 
+                    style={{ backgroundColor: 'var(--error)', color: 'white', width: '100%', marginTop: '1rem' }}
+                >
+                    Sair da Conta
+                </Button>
+            </Card>
         </div>
     )
 }
