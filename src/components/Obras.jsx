@@ -1,12 +1,14 @@
-﻿import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabase'
 import { Card } from './ui/Card'
 import { Button } from './ui/Button'
 import { Input } from './ui/Input'
 import { Plus, MapPin, Calculator, Calendar, Trash2 } from 'lucide-react'
+import { useAuth } from '../contexts/AuthContext'
 import './Obras.css'
 
 export const Obras = () => {
+    const { isAdmin } = useAuth()
     const [obras, setObras] = useState([])
     const [loading, setLoading] = useState(true)
     const [showForm, setShowForm] = useState(false)
@@ -55,13 +57,15 @@ export const Obras = () => {
                     <h1>Obras</h1>
                     <p>Gerencie seus projetos ativos</p>
                 </div>
-                <Button onClick={() => setShowForm(!showForm)}>
-                    <Plus size={18} />
-                    Novo
-                </Button>
+                {isAdmin && (
+                    <Button onClick={() => setShowForm(!showForm)}>
+                        <Plus size={18} />
+                        Novo
+                    </Button>
+                )}
             </header>
 
-            {showForm && (
+            {showForm && isAdmin && (
                 <Card className="form-card animate-in">
                     <form onSubmit={handleSubmit}>
                         <div className="form-grid">
@@ -115,11 +119,13 @@ export const Obras = () => {
                                     </span>
                                 </div>
                             </div>
-                            <div className="obra-card-actions">
-                                <Button variant="ghost" onClick={() => deleteObra(obra.id)}>
-                                    <Trash2 size={16} color="var(--error)" />
-                                </Button>
-                            </div>
+                            {isAdmin && (
+                                <div className="obra-card-actions">
+                                    <Button variant="ghost" onClick={() => deleteObra(obra.id)}>
+                                        <Trash2 size={16} color="var(--error)" />
+                                    </Button>
+                                </div>
+                            )}
                         </Card>
                     ))
                 )}

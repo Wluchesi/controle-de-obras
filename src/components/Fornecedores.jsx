@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { supabase } from '../lib/supabase'
 import { Card } from './ui/Card'
@@ -6,12 +6,14 @@ import { Button } from './ui/Button'
 import { Input } from './ui/Input'
 import { Modal } from './ui/Modal'
 import { UserPlus, User, Phone, Briefcase, History, DollarSign, FileText, Printer, Share2 } from 'lucide-react'
+import { useAuth } from '../contexts/AuthContext'
 import './Fornecedores.css'
 
 import { formatCPF, formatCNPJ } from '../utils/masks'
 import { Edit2, Trash2, Filter, AlertCircle } from 'lucide-react'
 
 export const Fornecedores = () => {
+    const { isAdmin } = useAuth()
     const [loading, setLoading] = useState(true)
     const [fornecedores, setFornecedores] = useState([])
     const [filterObra, setFilterObra] = useState('all')
@@ -266,22 +268,24 @@ export const Fornecedores = () => {
                     <h2>Fornecedores</h2>
                     <p>Gerenciamento de prestadores, materiais e locações.</p>
                 </div>
-                <Button onClick={() => {
-                    setIsEditing(false)
-                    setNewFornecedor({
-                        obra_id: '',
-                        nome: '',
-                        funcao: '',
-                        contato: '',
-                        subcategoria: 'prestador_servico',
-                        documento_tipo: 'cpf',
-                        documento_numero: ''
-                    })
-                    setShowForm(!showForm)
-                }}>
-                    <UserPlus size={18} />
-                    Novo
-                </Button>
+                {isAdmin && (
+                    <Button onClick={() => {
+                        setIsEditing(false)
+                        setNewFornecedor({
+                            obra_id: '',
+                            nome: '',
+                            funcao: '',
+                            contato: '',
+                            subcategoria: 'prestador_servico',
+                            documento_tipo: 'cpf',
+                            documento_numero: ''
+                        })
+                        setShowForm(!showForm)
+                    }}>
+                        <UserPlus size={18} />
+                        Novo
+                    </Button>
+                )}
             </header>
 
             <div className="filter-bar print-hide" style={{ marginBottom: '20px', display: 'flex', gap: '10px', alignItems: 'center' }}>
@@ -299,7 +303,7 @@ export const Fornecedores = () => {
                 </select>
             </div>
 
-            {showForm && (
+            {showForm && isAdmin && (
                 <Card className="form-card animate-in print-hide">
                     <h3 style={{ marginBottom: '15px' }}>{isEditing ? 'Editar Fornecedor' : 'Novo Fornecedor'}</h3>
                     <form onSubmit={handleCreateOrUpdate}>
@@ -437,26 +441,34 @@ export const Fornecedores = () => {
                                         </div>
                                     </div>
 
-                                    <div className="fornecedor-actions">
-                                        <Button
-                                            variant="primary"
-                                            size="sm"
-                                            onClick={() => openPaymentModal(fornecedor)}
-                                            title="Registrar Pagamento"
-                                        >
-                                            <DollarSign size={16} />
-                                            Pagar
-                                        </Button>
-                                        <Button variant="ghost" title="Histórico">
-                                            <History size={16} />
-                                        </Button>
-                                        <Button variant="ghost" onClick={() => handleEdit(fornecedor)} title="Editar">
-                                            <Edit2 size={16} />
-                                        </Button>
-                                        <Button variant="ghost" onClick={() => handleDelete(fornecedor.id)} title="Excluir" style={{ color: 'var(--error)' }}>
-                                            <Trash2 size={16} />
-                                        </Button>
-                                    </div>
+                                    {isAdmin ? (
+                                        <div className="fornecedor-actions">
+                                            <Button
+                                                variant="primary"
+                                                size="sm"
+                                                onClick={() => openPaymentModal(fornecedor)}
+                                                title="Registrar Pagamento"
+                                            >
+                                                <DollarSign size={16} />
+                                                Pagar
+                                            </Button>
+                                            <Button variant="ghost" title="Histórico">
+                                                <History size={16} />
+                                            </Button>
+                                            <Button variant="ghost" onClick={() => handleEdit(fornecedor)} title="Editar">
+                                                <Edit2 size={16} />
+                                            </Button>
+                                            <Button variant="ghost" onClick={() => handleDelete(fornecedor.id)} title="Excluir" style={{ color: 'var(--error)' }}>
+                                                <Trash2 size={16} />
+                                            </Button>
+                                        </div>
+                                    ) : (
+                                        <div className="fornecedor-actions" style={{ justifyContent: 'center' }}>
+                                            <Button variant="ghost" title="Histórico">
+                                                <History size={16} style={{ marginRight: '6px' }} /> Histórico
+                                            </Button>
+                                        </div>
+                                    )}
                                 </Card>
                             )
                         })

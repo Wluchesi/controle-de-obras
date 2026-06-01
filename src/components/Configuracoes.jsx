@@ -8,7 +8,7 @@ import { useAuth } from '../contexts/AuthContext'
 import './Configuracoes.css'
 
 export const Configuracoes = ({ onTabChange }) => {
-    const { signOut } = useAuth()
+    const { signOut, isAdmin } = useAuth()
     const [loading, setLoading] = useState(true)
     const [saving, setSaving] = useState(false)
     const [isEditing, setIsEditing] = useState(false)
@@ -35,11 +35,11 @@ export const Configuracoes = ({ onTabChange }) => {
                 })
                 setIsEditing(false)
             } else {
-                setIsEditing(true)
+                setIsEditing(isAdmin)
             }
         } catch (error) {
             console.error('Erro ao carregar configurações:', error)
-            setIsEditing(true)
+            setIsEditing(isAdmin)
         }
         setLoading(false)
     }
@@ -114,14 +114,16 @@ export const Configuracoes = ({ onTabChange }) => {
                             <label>Contato</label>
                             <p>{ownerData.proprietario_contato || 'Não preenchido'}</p>
                         </div>
-                        <Button
-                            variant="secondary"
-                            onClick={() => setIsEditing(true)}
-                            style={{ marginTop: '1.5rem', width: '100%' }}
-                        >
-                            <Edit2 size={18} />
-                            Editar Meus Dados
-                        </Button>
+                        {isAdmin && (
+                            <Button
+                                variant="secondary"
+                                onClick={() => setIsEditing(true)}
+                                style={{ marginTop: '1.5rem', width: '100%' }}
+                            >
+                                <Edit2 size={18} />
+                                Editar Meus Dados
+                            </Button>
+                        )}
                     </div>
                 ) : (
                     <form onSubmit={handleSave}>

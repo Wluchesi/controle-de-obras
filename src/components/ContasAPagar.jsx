@@ -1,9 +1,10 @@
-﻿import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabase'
 import { Card } from './ui/Card'
 import { Button } from './ui/Button'
 import { Calendar, AlertCircle, CheckCircle, Search, Filter, DollarSign, Clock, Users, Pencil, Trash2, Package2 } from 'lucide-react'
 import { TransactionForm } from './TransactionForm'
+import { useAuth } from '../contexts/AuthContext'
 import './ContasAPagar.css'
 
 const formatDisplayDate = (dateString) => {
@@ -21,6 +22,7 @@ const getLocalDateStr = () => {
 }
 
 export const ContasAPagar = () => {
+    const { isAdmin } = useAuth()
     const [loading, setLoading] = useState(true)
     const [filterStatus, setFilterStatus] = useState('pendente')
     const [filterObra, setFilterObra] = useState('all')
@@ -237,7 +239,7 @@ export const ContasAPagar = () => {
                                         {isAtrasada(conta.vencimento, conta.status) ? 'Atrasado em: ' : 'Vence em: '} {formatDisplayDate(conta.vencimento)}
                                     </div>
                                     <div className="conta-actions-row">
-                                        {conta.status === 'pendente' && (
+                                        {conta.status === 'pendente' && isAdmin && (
                                             <Button
                                                 size="sm"
                                                 onClick={() => handleMarkAsPaid(conta.id)}
@@ -246,14 +248,16 @@ export const ContasAPagar = () => {
                                                 Pagar
                                             </Button>
                                         )}
-                                        <div className="item-actions">
-                                            <button className="action-btn-minimal" onClick={() => handleEdit(conta.id)} title="Editar">
-                                                <Pencil size={16} />
-                                            </button>
-                                            <button className="action-btn-minimal" onClick={() => handleDelete(conta.id)} title="Excluir">
-                                                <Trash2 size={16} />
-                                            </button>
-                                        </div>
+                                        {isAdmin && (
+                                            <div className="item-actions">
+                                                <button className="action-btn-minimal" onClick={() => handleEdit(conta.id)} title="Editar">
+                                                    <Pencil size={16} />
+                                                </button>
+                                                <button className="action-btn-minimal" onClick={() => handleDelete(conta.id)} title="Excluir">
+                                                    <Trash2 size={16} />
+                                                </button>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -262,7 +266,7 @@ export const ContasAPagar = () => {
                 )}
             </div>
 
-            {showForm && (
+            {showForm && isAdmin && (
                 <div className="modal-overlay" onClick={(e) => { if (e.target === e.currentTarget) setShowForm(false); }}>
                     <div className="edit-modal animate-in" style={{ padding: '0', border: 'none', background: 'transparent' }}>
                         <TransactionForm

@@ -28,6 +28,7 @@ export const AuthProvider = ({ children }) => {
         signIn: (data) => supabase.auth.signInWithPassword(data),
         signOut: () => supabase.auth.signOut(),
         user,
+        isAdmin: user ? (user.email === 'wluchesi@gmail.com' || user.email === 'admin@futura.com' || user.email?.toLowerCase().includes('admin')) : false
     }
 
     return (

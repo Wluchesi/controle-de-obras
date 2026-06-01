@@ -1,9 +1,10 @@
-﻿import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabase'
 import { Card } from './ui/Card'
 import { Button } from './ui/Button'
 import { Plus, Filter, Tag, Calendar, Receipt, ArrowUpCircle, ArrowDownCircle, User, Pencil, Trash2 } from 'lucide-react'
 import { TransactionForm } from './TransactionForm'
+import { useAuth } from '../contexts/AuthContext'
 import './Despesas.css'
 
 const formatDisplayDate = (dateString) => {
@@ -13,6 +14,7 @@ const formatDisplayDate = (dateString) => {
 }
 
 export const Despesas = () => {
+    const { isAdmin } = useAuth()
     const [transactions, setTransactions] = useState([])
     const [obras, setObras] = useState([])
     const [fornecedores, setFornecedores] = useState([])
@@ -124,16 +126,18 @@ export const Despesas = () => {
                     <h1>Financeiro</h1>
                     <p>Fluxo de caixa e controle de custos</p>
                 </div>
-                <div className="header-actions">
-                    <Button variant="secondary" onClick={() => { setFormType('entrada'); setEditingId(null); setShowForm(true); }}>
-                        <ArrowUpCircle size={18} />
-                        Entrada
-                    </Button>
-                    <Button onClick={() => { setFormType('despesa'); setEditingId(null); setShowForm(true); }}>
-                        <Plus size={18} />
-                        Despesas
-                    </Button>
-                </div>
+                {isAdmin && (
+                    <div className="header-actions">
+                        <Button variant="secondary" onClick={() => { setFormType('entrada'); setEditingId(null); setShowForm(true); }}>
+                            <ArrowUpCircle size={18} />
+                            Entrada
+                        </Button>
+                        <Button onClick={() => { setFormType('despesa'); setEditingId(null); setShowForm(true); }}>
+                            <Plus size={18} />
+                            Despesas
+                        </Button>
+                    </div>
+                )}
             </header>
 
             <div className="cashflow-summary animate-in">
@@ -201,7 +205,7 @@ export const Despesas = () => {
                 </div>
             </div>
 
-            {showForm && (
+            {showForm && isAdmin && (
                 <div className="modal-overlay" onClick={(e) => { if (e.target === e.currentTarget) setShowForm(false); }}>
                     <TransactionForm
                         initialType={formType}
@@ -247,14 +251,16 @@ export const Despesas = () => {
                                     <div className={`despesa-value ${t.type}`}>
                                         {t.type === 'entrada' ? '+' : '-'} R$ {parseFloat(t.valor).toLocaleString()}
                                     </div>
-                                    <div className="item-actions-top">
-                                        <button className="action-btn-minimal" onClick={() => handleEdit(t)}>
-                                            <Pencil size={14} />
-                                        </button>
-                                        <button className="action-btn-minimal" onClick={() => handleDelete(t.id, t.type)}>
-                                            <Trash2 size={14} />
-                                        </button>
-                                    </div>
+                                    {isAdmin && (
+                                        <div className="item-actions-top">
+                                            <button className="action-btn-minimal" onClick={() => handleEdit(t)}>
+                                                <Pencil size={14} />
+                                            </button>
+                                            <button className="action-btn-minimal" onClick={() => handleDelete(t.id, t.type)}>
+                                                <Trash2 size={14} />
+                                            </button>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                             <div className="despesa-meta">

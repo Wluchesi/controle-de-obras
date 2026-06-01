@@ -7,9 +7,11 @@ import {
     AlertCircle, Search, Filter, Briefcase, Package2, Edit2, User,
     Hammer, Home, Zap, Wrench, LayoutGrid, Trees, Droplets
 } from 'lucide-react'
+import { useAuth } from '../contexts/AuthContext'
 import './Compras.css'
 
 export const Compras = () => {
+    const { isAdmin } = useAuth()
     const [loading, setLoading] = useState(true)
     const [listaCompras, setListaCompras] = useState([])
     const [obrasList, setObrasList] = useState([])
@@ -270,40 +272,42 @@ export const Compras = () => {
                 </div>
             )}
 
-            <form className="quick-add-form animate-in" onSubmit={handleAddItem}>
-                <input
-                    className="quick-add-input"
-                    placeholder="O que precisa ser comprado?"
-                    value={newItem.item}
-                    onChange={(e) => setNewItem({ ...newItem, item: e.target.value })}
-                    list="materials-list"
-                />
-                <datalist id="materials-list">
-                    {COMMON_MATERIALS.map((mat, i) => <option key={i} value={mat} />)}
-                </datalist>
-                <input
-                    className="quick-add-input"
-                    placeholder="Qtd/Und"
-                    style={{ maxWidth: '120px' }}
-                    value={newItem.quantidade}
-                    onChange={(e) => setNewItem({ ...newItem, quantidade: e.target.value })}
-                />
-                {selectedObra === 'all' && (
-                    <select
+            {isAdmin && (
+                <form className="quick-add-form animate-in" onSubmit={handleAddItem}>
+                    <input
                         className="quick-add-input"
-                        style={{ maxWidth: '200px' }}
-                        value={newItem.obra_id}
-                        onChange={(e) => setNewItem({ ...newItem, obra_id: e.target.value })}
-                    >
-                        <option value="">Selecionar Obra</option>
-                        {obrasList.map(obra => <option key={obra.id} value={obra.id}>{obra.nome}</option>)}
-                    </select>
-                )}
-                <Button type="submit" className="btn-pay">
-                    <Plus size={18} />
-                    Adicionar
-                </Button>
-            </form>
+                        placeholder="O que precisa ser comprado?"
+                        value={newItem.item}
+                        onChange={(e) => setNewItem({ ...newItem, item: e.target.value })}
+                        list="materials-list"
+                    />
+                    <datalist id="materials-list">
+                        {COMMON_MATERIALS.map((mat, i) => <option key={i} value={mat} />)}
+                    </datalist>
+                    <input
+                        className="quick-add-input"
+                        placeholder="Qtd/Und"
+                        style={{ maxWidth: '120px' }}
+                        value={newItem.quantidade}
+                        onChange={(e) => setNewItem({ ...newItem, quantidade: e.target.value })}
+                    />
+                    {selectedObra === 'all' && (
+                        <select
+                            className="quick-add-input"
+                            style={{ maxWidth: '200px' }}
+                            value={newItem.obra_id}
+                            onChange={(e) => setNewItem({ ...newItem, obra_id: e.target.value })}
+                        >
+                            <option value="">Selecionar Obra</option>
+                            {obrasList.map(obra => <option key={obra.id} value={obra.id}>{obra.nome}</option>)}
+                        </select>
+                    )}
+                    <Button type="submit" className="btn-pay">
+                        <Plus size={18} />
+                        Adicionar
+                    </Button>
+                </form>
+            )}
 
             <div className="compras-content">
                 <section className="shopping-list-section">
@@ -331,22 +335,24 @@ export const Compras = () => {
                                             </div>
                                         </div>
                                         <div className="compra-actions">
-                                            <div style={{ display: 'flex', gap: '8px' }}>
-                                                <button
-                                                    onClick={() => setEditingItem(item)}
-                                                    className="action-btn-minimal"
-                                                    title="Editar"
-                                                >
-                                                    <Edit2 size={16} />
-                                                </button>
-                                                <button
-                                                    onClick={() => deleteItem(item.id)}
-                                                    className="action-btn-minimal"
-                                                    title="Excluir"
-                                                >
-                                                    <Trash2 size={16} />
-                                                </button>
-                                            </div>
+                                            {isAdmin && (
+                                                <div style={{ display: 'flex', gap: '8px' }}>
+                                                    <button
+                                                        onClick={() => setEditingItem(item)}
+                                                        className="action-btn-minimal"
+                                                        title="Editar"
+                                                    >
+                                                        <Edit2 size={16} />
+                                                    </button>
+                                                    <button
+                                                        onClick={() => deleteItem(item.id)}
+                                                        className="action-btn-minimal"
+                                                        title="Excluir"
+                                                    >
+                                                        <Trash2 size={16} />
+                                                    </button>
+                                                </div>
+                                            )}
                                             <Button variant="secondary" size="sm" onClick={() => setShowQuoteForm(showQuoteForm === item.id ? null : item.id)}>
                                                 {item.cotacoes?.length || 0} Cotações
                                             </Button>
@@ -366,7 +372,7 @@ export const Compras = () => {
                                                         </div>
                                                         <div className="quote-price" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                                                             <span style={{ fontWeight: '800', color: 'var(--text-main)' }}>R$ {Number(quote.preco_unitario).toLocaleString()}</span>
-                                                            {!quote.selecionada && item.status !== 'comprado' && (
+                                                            {!quote.selecionada && item.status !== 'comprado' && isAdmin && (
                                                                 <Button size="sm" onClick={() => approveQuote(item, quote)} className="btn-pay">
                                                                     Aprovar
                                                                 </Button>
@@ -377,7 +383,7 @@ export const Compras = () => {
                                                 ))}
                                             </div>
 
-                                            {item.status !== 'comprado' && (
+                                            {item.status !== 'comprado' && isAdmin && (
                                                 <div className="add-quote-form" style={{ display: 'flex', gap: '8px' }}>
                                                     <select
                                                         className="quick-add-input"
@@ -419,7 +425,7 @@ export const Compras = () => {
                     </div>
                 </section>
             </div>
-            {editingItem && (
+            {editingItem && isAdmin && (
                 <div className="modal-overlay" onClick={(e) => { if (e.target === e.currentTarget) setEditingItem(null); }}>
                     <div className="edit-modal animate-in">
                         <header className="page-header" style={{ marginBottom: '20px' }}>
