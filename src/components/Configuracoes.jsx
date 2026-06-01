@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { createClient } from '@supabase/supabase-js'
 import { supabase } from '../lib/supabase'
 import { Card } from './ui/Card'
 import { Button } from './ui/Button'
 import { Input } from './ui/Input'
-import { Save, User, FileText, Phone, Edit2, CheckCircle, LogOut } from 'lucide-react'
+import { Save, User, FileText, Phone, Edit2, CheckCircle, LogOut, UserPlus } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import './Configuracoes.css'
 
@@ -18,6 +19,61 @@ export const Configuracoes = ({ onTabChange }) => {
         proprietario_documento: '',
         proprietario_contato: ''
     })
+
+    // User creation states
+    const [newUserEmail, setNewUserEmail] = useState('')
+    const [newUserPassword, setNewUserPassword] = useState('')
+    const [newUserRole, setNewUserRole] = useState('user')
+    const [userCreationLoading, setUserCreationLoading] = useState(false)
+    const [userCreationSuccess, setUserCreationSuccess] = useState(null)
+    const [userCreationError, setUserCreationError] = useState(null)
+
+    const handleCreateUser = async (e) => {
+        e.preventDefault()
+        if (newUserPassword.length < 6) {
+            setUserCreationError('A senha deve conter pelo menos 6 caracteres.')
+            return
+        }
+        setUserCreationLoading(true)
+        setUserCreationError(null)
+        setUserCreationSuccess(null)
+
+        try {
+            const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+            const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+            
+            // Non-persisting supabase client to avoid logging out the current admin
+            const tempSupabase = createClient(supabaseUrl, supabaseAnonKey, {
+                auth: {
+                    persistSession: false,
+                    autoRefreshToken: false,
+                    detectSessionInUrl: false
+                }
+            })
+
+            const { error } = await tempSupabase.auth.signUp({
+                email: newUserEmail,
+                password: newUserPassword,
+                options: {
+                    data: {
+                        role: newUserRole
+                    }
+                }
+            })
+
+            if (error) throw error
+
+            setUserCreationSuccess(`Usuário ${newUserEmail} cadastrado com sucesso!`)
+            setNewUserEmail('')
+            setNewUserPassword('')
+            setNewUserRole('user')
+        } catch (err) {
+            console.error('Erro ao cadastrar usuário:', err)
+            setUserCreationError(err.message || 'Falha ao cadastrar usuário.')
+        } finally {
+            setUserCreationLoading(false)
+        }
+    }
 
     useEffect(() => {
         fetchConfig()
@@ -166,6 +222,68 @@ export const Configuracoes = ({ onTabChange }) => {
                     <p>Após registrar o pagamento de um fornecedor na aba "Fornecedores", você pode gerar um recibo profissional em PDF com a sua marca.</p>
                 </div>
             </div>
+
+            {isAdmin && (
+                <Card className="form-card animate-in" style={{ marginTop: '1.5rem' }}>
+                    <div className="section-header">
+                        <UserPlus size={20} className="icon" style={{ color: 'var(--accent)' }} />
+                        <h2>Gerenciamento de Usuários</h2>
+                    </div>
+                    <p className="section-desc">Cadastre novos administradores ou usuários comuns com visualização restrita.</p>
+
+                    <form onSubmit={handleCreateUser}>
+                        <div className="form-grid">
+                            <Input
+                                label="E-mail do Novo Usuário"
+                                type="email"
+                                placeholder="exemplo@email.com"
+                                value={newUserEmail}
+                                onChange={(e) => setNewUserEmail(e.target.value)}
+                                required
+                            />
+                            <Input
+                                label="Senha Temporária"
+                                type="password"
+                                placeholder="Mínimo 6 caracteres"
+                                value={newUserPassword}
+                                onChange={(e) => setNewUserPassword(e.target.value)}
+                                required
+                            />
+                            <div className="input-group">
+                                <label className="input-label">Nível de Acesso</label>
+                                <select
+                                    className="input-field"
+                                    value={newUserRole}
+                                    onChange={(e) => setNewUserRole(e.target.value)}
+                                    required
+                                >
+                                    <option value="user">Usuário Comum (Apenas Visualização)</option>
+                                    <option value="admin">Administrador (Acesso Total)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        {userCreationSuccess && (
+                            <div style={{ color: 'var(--success)', fontSize: '0.9rem', marginTop: '1rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <CheckCircle size={16} />
+                                <span>{userCreationSuccess}</span>
+                            </div>
+                        )}
+
+                        {userCreationError && (
+                            <div style={{ color: 'var(--error)', fontSize: '0.9rem', marginTop: '1rem' }}>
+                                <span>⚠️ {userCreationError}</span>
+                            </div>
+                        )}
+
+                        <div className="form-actions" style={{ marginTop: '1.5rem' }}>
+                            <Button type="submit" loading={userCreationLoading} disabled={userCreationLoading}>
+                                Cadastrar Usuário
+                            </Button>
+                        </div>
+                    </form>
+                </Card>
+            )}
 
             <Card className="form-card animate-in" style={{ marginTop: '1.5rem', borderColor: 'rgba(239, 68, 68, 0.2)' }}>
                 <div className="section-header" style={{ color: 'var(--error)' }}>
