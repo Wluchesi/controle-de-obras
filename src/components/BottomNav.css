@@ -38,8 +38,28 @@
 }
 
 @media (max-width: 768px) {
-    /* Hide Contas, Equipe, Relatórios, Ajustes in bottom nav on mobile */
-    .bottom-nav .nav-item:nth-child(n+5) {
-        display: none !important;
+    .bottom-nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding: 0 var(--spacing-md);
+        gap: 12px;
+    }
+
+    /* Hide scrollbars */
+    .bottom-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .bottom-nav {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .nav-item {
+        flex: 0 0 72px;
+        scroll-snap-align: center;
+        padding: 6px 0;
     }
 }

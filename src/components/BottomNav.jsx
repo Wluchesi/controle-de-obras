@@ -1,8 +1,20 @@
-﻿import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Home, HardHat, DollarSign, FileText, Users, Settings, Truck, Calendar, ShoppingCart } from 'lucide-react'
 import './BottomNav.css'
 
 export const BottomNav = ({ activeTab, onTabChange }) => {
+    const activeRef = useRef(null)
+
+    useEffect(() => {
+        if (activeRef.current) {
+            activeRef.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest',
+                inline: 'center'
+            })
+        }
+    }, [activeTab])
+
     const tabs = [
         { id: 'dashboard', icon: Home, label: 'Início' },
         { id: 'obras', icon: HardHat, label: 'Obras' },
@@ -21,6 +33,7 @@ export const BottomNav = ({ activeTab, onTabChange }) => {
                 return (
                     <button
                         key={tab.id}
+                        ref={activeTab === tab.id ? activeRef : null}
                         className={`nav-item ${activeTab === tab.id ? 'active' : ''}`}
                         onClick={() => onTabChange(tab.id)}
                     >
